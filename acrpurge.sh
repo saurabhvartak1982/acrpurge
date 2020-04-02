@@ -20,11 +20,11 @@ echo $repositories
 repoArray=($repositories)
 
 #Retain the desired number of Tags and purge the rest
-totalTags=${#repositories[@]}
+totalTags=${#repoArray[@]}
 echo $totalTags
 
-if [ $totalTags -ge $RETAINEDTAGS_CNT ]; then
-	for (( tagctr=($RETAINEDTAGS_CNT); tagctr<=$totalTags ; tagctr++ ))
+if [ $totalTags -gt $RETAINEDTAGS_CNT ]; then
+	for (( tagctr=($RETAINEDTAGS_CNT); tagctr<$totalTags ; tagctr++ ))
 	do
 		imageName="$REPOSITORYNAME:${repoArray[$tagctr]}"
 		echo "Deleting image: $imageName"
